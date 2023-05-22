@@ -1,0 +1,14 @@
+version: "2"
+
+services:
+  backend:
+    build: . # build the image from the Dockerfile in the current directory
+    ports:
+      - "3003:3000" # attach host 3003 port to container 3000 port
+      - "9229:9229" # for debugging
+    volumes:
+      - .:/usr/src/app # mount the current directory to the container
+      - /usr/src/app/node_modules # exclude node_modules from being overwritten by host
+    command: npm run start:docker # defined in package.json
+    environment: # environment variables in case of when not using .env file
+      - PORT=3000
