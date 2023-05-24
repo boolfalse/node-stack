@@ -6,7 +6,8 @@
   "scripts": {
     "build": "rimraf dist && swc ./src -d dist",
     "start": "node dist/index.js",
-    "start:docker": "npm run build && npm run start"
+    "db:console": "docker exec -it node-stack_postgres_db_1 psql -h localhost -U postgres -d webapp_dev",
+    "start:docker": "npm run build && node --inspect=0.0.0.0 dist/index.js"
   },
   "keywords": [],
   "author": "",
