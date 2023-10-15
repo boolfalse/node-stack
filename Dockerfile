@@ -1,6 +1,6 @@
 
 # define the base image
-FROM node:18.16
+FROM node:18
 
 # Create woking app directory
 WORKDIR /usr/src/app
@@ -10,6 +10,10 @@ COPY package*.json ./
 
 # Install dependencies
 RUN npm install
+
+# Prisma setup
+COPY prisma/schema.prisma ./prisma/
+RUN npx prisma generate
 
 # Copy all files from the current directory to the working directory
 COPY . .
