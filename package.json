@@ -8,6 +8,8 @@
     "start": "node dist/index.js",
     "rebuild:backend": "docker-compose build backend && docker-compose rm --stop backend && docker-compose up -d backend",
     "db:console": "docker exec -it node-stack_postgres_db_1 psql -h localhost -U postgres -d webapp_dev",
+    "db:migrate": "npx knex migrate:latest",
+    "docker:db:migrate": "docker-compose run backend npm run db:migrate",
     "start:docker": "npm run build && node --inspect=0.0.0.0 dist/index.js"
   },
   "keywords": [],
@@ -21,7 +23,10 @@
     "@types/node": "^20.2.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "knex": "^3.0.1",
     "morgan": "^1.10.0",
+    "pg": "^8.11.3",
+    "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   },
   "devDependencies": {
